@@ -2,7 +2,8 @@ apply plugin: 'android-library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0"
+version = "1.01"
+// ./gradlew clean build bintrayUpload
 
 android {
     compileSdkVersion 22
@@ -90,7 +91,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "android-devicein fo"
+        name = "device-info"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]

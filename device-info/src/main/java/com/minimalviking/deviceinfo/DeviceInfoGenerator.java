@@ -15,6 +15,7 @@ public class DeviceInfoGenerator {
     private       boolean          showApiLevel;
     private       boolean          showNetwork;
     private       boolean          showIsRooted;
+    private       boolean          showOpenglVersion;
 
     public DeviceInfoGenerator(DeviceInfoConfig config) {
         this.config = config;
@@ -26,6 +27,7 @@ public class DeviceInfoGenerator {
         showApiLevel = true;
         showNetwork = true;
         showIsRooted = true;
+        showOpenglVersion = true;
 
         return this;
     }
@@ -53,7 +55,11 @@ public class DeviceInfoGenerator {
 
     public DeviceInfoGenerator isRooted() {
         showIsRooted = true;
+        return this;
+    }
 
+    public DeviceInfoGenerator checkOpenGlVersion() {
+        showOpenglVersion = true;
         return this;
     }
 
@@ -97,6 +103,14 @@ public class DeviceInfoGenerator {
                 result += "Rooted: ";
             }
             result += RootCheck.isDeviceRooted();
+            result = addSeprator(result);
+        }
+
+        if (showOpenglVersion) {
+            if (config.includeFieldNames()) {
+                result += "OpenGL version: ";
+            }
+            result += OpenGLVersionChecker.getMaxSupportedVersion(config.getContext());
             result = addSeprator(result);
         }
 
