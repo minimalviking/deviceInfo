@@ -1,6 +1,12 @@
-# deviceInfo
+# device info
 Utility library for creating concise device info for support/debug purposes
-
+# installation
+add the following to the gradle.build file
+```
+dependencies {
+    compile 'com.minimalviking:device-info:1.0'
+}
+```
 # Basic example
 ```
     DeviceInfoConfig config = DeviceInfoConfigBuilder.defaultConfig(getApplicationContext());
