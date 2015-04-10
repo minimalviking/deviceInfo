@@ -1,6 +1,11 @@
 package com.minimalviking.deviceinfo;
 
 import com.minimalviking.deviceinfo.DeviceInfoConfigBuilder.DeviceInfoConfig;
+import com.minimalviking.deviceinfo.providers.AppVersionProvider;
+import com.minimalviking.deviceinfo.providers.ConnectivityInfo;
+import com.minimalviking.deviceinfo.providers.Devices;
+import com.minimalviking.deviceinfo.providers.OpenGLVersionChecker;
+import com.minimalviking.deviceinfo.providers.RootCheck;
 
 import static android.os.Build.VERSION.RELEASE;
 import static android.os.Build.VERSION.SDK_INT;
@@ -16,6 +21,8 @@ public class DeviceInfoGenerator {
     private       boolean          showNetwork;
     private       boolean          showIsRooted;
     private       boolean          showOpenglVersion;
+    private       boolean          showVersionName;
+    private       boolean          showVersionCode;
 
     public DeviceInfoGenerator(DeviceInfoConfig config) {
         this.config = config;
@@ -28,6 +35,8 @@ public class DeviceInfoGenerator {
         showNetwork = true;
         showIsRooted = true;
         showOpenglVersion = true;
+        showVersionCode = true;
+        showVersionName = true;
 
         return this;
     }
@@ -63,9 +72,35 @@ public class DeviceInfoGenerator {
         return this;
     }
 
+    public DeviceInfoGenerator versionName() {
+        showVersionName = true;
+        return this;
+    }
+
+    public DeviceInfoGenerator versionCode() {
+        showVersionCode = true;
+        return this;
+    }
+
     public String print() {
 
         String result = config.getAppendAtStart() == null ? "" : config.getAppendAtStart();
+        if (showVersionName) {
+            if (config.includeFieldNames()) {
+                result += "Version name: ";
+            }
+            result += AppVersionProvider.getVersionName(config.getContext());
+            result = addSeprator(result);
+        }
+
+        if (showVersionCode) {
+            if (config.includeFieldNames()) {
+                result += "Version code: ";
+            }
+            result += AppVersionProvider.getVersionCode(config.getContext());
+            result = addSeprator(result);
+        }
+
         if (showModel) {
             if (config.includeFieldNames()) {
                 result += "Model: ";
@@ -76,7 +111,7 @@ public class DeviceInfoGenerator {
 
         if (showAndroidVersion) {
             if (config.includeFieldNames()) {
-                result += "Version: ";
+                result += "Android version: ";
             }
             result += RELEASE;
             result = addSeprator(result);
@@ -115,8 +150,6 @@ public class DeviceInfoGenerator {
         }
 
         result = removeLastSeparator(result);
-
-
         result = config.getAppendAtEnd() == null ? result : result + config.getAppendAtEnd();
 
         return result;

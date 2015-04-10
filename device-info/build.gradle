@@ -2,7 +2,7 @@ apply plugin: 'android-library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.01"
+version = "1.03"
 // ./gradlew clean build bintrayUpload
 
 android {
@@ -30,7 +30,7 @@ install {
                 packaging 'aar'
 
                 // Add your description here
-                name 'to jest name albo descr'
+                name 'device-info'
                 url siteUrl
 
                 // Set your license

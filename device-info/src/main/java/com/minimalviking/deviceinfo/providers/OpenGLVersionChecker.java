@@ -1,4 +1,4 @@
-package com.minimalviking.deviceinfo;
+package com.minimalviking.deviceinfo.providers;
 
 import android.app.ActivityManager;
 import android.content.Context;

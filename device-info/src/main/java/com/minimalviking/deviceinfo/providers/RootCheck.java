@@ -1,4 +1,4 @@
-package com.minimalviking.deviceinfo;
+package com.minimalviking.deviceinfo.providers;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
