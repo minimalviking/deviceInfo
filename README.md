@@ -16,11 +16,14 @@ dependencies {
 And this outputs:
 ```
     Device info:
+    Version name: 1.50b
+    Version code: 34
     Model: Samsung Galaxy Note4
     Version: 4.4.4
     API level: 19
     Network: Wifi
     Rooted: false
+    OpenGL version: 3.0
 ```
 # Customised usage
 ```
@@ -31,12 +34,12 @@ DeviceInfoConfig config = new DeviceInfoConfigBuilder(context)
     .includeFieldNames(false).build();
 
 String deviceInfo = new DeviceInfoGenerator(config)
-    .model().androidVersion().apiLevel().network().isRooted().print();
+    .versionCode().model().androidVersion().apiLevel().network().isRooted().print();
 ```
 Example above generates device data presented in CSV-friendly format (handy when importing into spreadsheets):
 ```
 Do not modify line below
-Motorola MOTO G, 5.0.2, 21, Mobile - slow, true
+34, Motorola MOTO G, 5.0.2, 21, Mobile - fast, true
 Please write below this line
 ```
 
