@@ -2,7 +2,7 @@ apply plugin: 'android-library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.03"
+version = "1.04"
 // ./gradlew clean build bintrayUpload
 
 android {

@@ -4,7 +4,7 @@ Utility library for creating concise device info for support/debug purposes
 add the following to the gradle.build file
 ```
 dependencies {
-    compile 'com.minimalviking:device-info:1.0'
+    compile 'com.minimalviking:device-info:1.04'
 }
 ```
 # Basic example
